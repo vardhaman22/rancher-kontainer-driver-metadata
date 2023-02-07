@@ -231,9 +231,6 @@ spec:
           requests:
             cpu: "100m"
             memory: "50Mi"
-          limits:
-            cpu: "100m"
-            memory: "50Mi"
         securityContext:
           seLinuxOptions:
             type: rke_network_t

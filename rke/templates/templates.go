@@ -279,7 +279,7 @@ func getTemplates() map[string]string {
 		flannelv115:          FlannelTemplateV115,
 		flannelv116:          FlannelTemplateV116,
 		flannelv0140:         FlannelTemplateV0_14_0,
-		flannelv0140Rancher2: FlannelTemplateV0_14_0Rancher2,
+		flannelv0140Rancher2: FlannelTemplateV0_14_0,
 		flannelv0192:         FlannelTemplateV0_19_2,
 		flannelv18:           FlannelTemplate,
 
