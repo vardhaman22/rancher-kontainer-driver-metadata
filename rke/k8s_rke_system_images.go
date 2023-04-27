@@ -8771,29 +8771,29 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			Nodelocal:                 "rancher/mirrored-k8s-dns-node-cache:1.22.10",
 		},
 		// Enabled in Rancher v2.7.4
-		"v1.26.4-rancher4-1": {
+		"v1.26.4-rancher1-1": {
 			Etcd:                      "rancher/mirrored-coreos-etcd:v3.5.6",
-			Kubernetes:                "rancher/hyperkube:v1.26.4-rancher1",
-			Alpine:                    "vardhaman123/rancher-rke-tools:v1.0.0",
-			NginxProxy:                "vardhaman123/rancher-rke-tools:v1.0.0",
-			CertDownloader:            "vardhaman123/rancher-rke-tools:v1.0.0",
-			KubernetesServicesSidecar: "vardhaman123/rancher-rke-tools:v1.0.0",
+			Kubernetes:                "rancher/hyperkube:v1.26.4-rancher2",
+			Alpine:                    "vardhaman123/rancher-rke-tools:v1.0.0", // TODO: update
+			NginxProxy:                "vardhaman123/rancher-rke-tools:v1.0.0", // TODO: update
+			CertDownloader:            "vardhaman123/rancher-rke-tools:v1.0.0", // TODO: update
+			KubernetesServicesSidecar: "vardhaman123/rancher-rke-tools:v1.0.0", // TODO: update
 			KubeDNS:                   "rancher/mirrored-k8s-dns-kube-dns:1.22.8",
 			DNSmasq:                   "rancher/mirrored-k8s-dns-dnsmasq-nanny:1.22.8",
 			KubeDNSSidecar:            "rancher/mirrored-k8s-dns-sidecar:1.22.8",
 			KubeDNSAutoscaler:         "rancher/mirrored-cluster-proportional-autoscaler:1.8.6",
-			Flannel:                   "rancher/mirrored-flannelcni-flannel:v0.19.2",
+			Flannel:                   "rancher/mirrored-flannelcni-flannel:v0.21.4",
 			FlannelCNI:                "rancher/flannel-cni:v0.3.0-rancher7",
-			CalicoNode:                "rancher/mirrored-calico-node:v3.24.1",
-			CalicoCNI:                 "rancher/calico-cni:v3.24.1-rancher1",
-			CalicoControllers:         "rancher/mirrored-calico-kube-controllers:v3.24.1",
-			CalicoCtl:                 "rancher/mirrored-calico-ctl:v3.24.1",
-			CalicoFlexVol:             "rancher/mirrored-calico-pod2daemon-flexvol:v3.24.1",
-			CanalNode:                 "rancher/mirrored-calico-node:v3.24.1",
-			CanalCNI:                  "rancher/calico-cni:v3.24.1-rancher1",
-			CanalControllers:          "rancher/mirrored-calico-kube-controllers:v3.24.1",
-			CanalFlannel:              "rancher/mirrored-flannelcni-flannel:v0.19.2",
-			CanalFlexVol:              "rancher/mirrored-calico-pod2daemon-flexvol:v3.24.1",
+			CalicoNode:                "rancher/mirrored-calico-node:v3.25.0",
+			CalicoCNI:                 "vardhaman123/calico-cni:v3.25.0-rancher1", // TODO: update
+			CalicoControllers:         "rancher/mirrored-calico-kube-controllers:v3.25.0",
+			CalicoCtl:                 "rancher/mirrored-calico-ctl:v3.25.0",
+			CalicoFlexVol:             "rancher/mirrored-calico-pod2daemon-flexvol:v3.25.0",
+			CanalNode:                 "rancher/mirrored-calico-node:v3.25.0",
+			CanalCNI:                  "rancher/calico-cni:v3.24.1-ranc25.0",
+			CanalControllers:          "rancher/mirrored-calico-kube-controllers:v3.25.0",
+			CanalFlannel:              "rancher/mirrored-flannelcni-flannel:v0.21.4",
+			CanalFlexVol:              "rancher/mirrored-calico-pod2daemon-flexvol:v3.25.0",
 			WeaveNode:                 "weaveworks/weave-kube:2.8.1",
 			WeaveCNI:                  "weaveworks/weave-npc:2.8.1",
 			AciCniDeployContainer:     "noiro/cnideploy:5.2.3.5.1d150da",
