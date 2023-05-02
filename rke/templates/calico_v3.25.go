@@ -883,10 +883,9 @@ spec:
                   [Default: false]'
                 type: boolean
               bpfEnforceRPF:
-                description: 'BPFEnforceRPF enforce strict RPF on all host interfaces
-                  with BPF programs regardless of what is the per-interfaces or global
-                  setting. Possible values are Disabled, Strict or Loose. [Default:
-                  Strict]'
+                description: 'BPFEnforceRPF enforce strict RPF on all interfaces with
+                  BPF programs regardless of what is the per-interfaces or global
+                  setting. Possible values are Disabled or Strict. [Default: Strict]'
                 type: string
               bpfExtToServiceConnmark:
                 description: 'BPFExtToServiceConnmark in BPF mode, control a 32bit
@@ -1013,8 +1012,7 @@ spec:
                   used for Felix's (internal) dataplane driver. Increase this value
                   if you experience spurious non-ready or non-live events when Felix
                   is under heavy load. Decrease the value to get felix to report non-live
-                  or non-ready more quickly. [Default: 90s] \n Deprecated: replaced
-                  by the generic HealthTimeoutOverrides.'
+                  or non-ready more quickly. [Default: 90s] \n Deprecated: replaced by the generic HealthTimeoutOverrides.'
                 type: string
               debugDisableLogDropping:
                 type: boolean
@@ -1118,16 +1116,17 @@ spec:
                   type: object
                 type: array
               featureDetectOverride:
-                description: FeatureDetectOverride is used to override feature detection
-                  based on auto-detected platform capabilities.  Values are specified
-                  in a comma separated list with no spaces, example; "SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock=".  "true"
-                  or "false" will force the feature, empty or omitted values are auto-detected.
+                description: FeatureDetectOverride is used to override the feature
+                  detection. Values are specified in a comma separated list with no
+                  spaces, example; "SNATFullyRandom=true,MASQFullyRandom=false,RestoreSupportsLock=".
+                  "true" or "false" will force the feature, empty or omitted values
+                  are auto-detected.
                 type: string
               featureGates:
-                description: FeatureGates is used to enable or disable tech-preview
+                description: 'FeatureGates is used to enable or disable tech-preview
                   Calico features. Values are specified in a comma separated list
                   with no spaces, example; "BPFConnectTimeLoadBalancingWorkaround=enabled,XyZ=false".
-                  This is used to enable features that are not fully production ready.
+                  This is used to enable features that are not fully production ready.'
                 type: string
               floatingIPs:
                 description: FloatingIPs configures whether or not Felix will program
@@ -1474,8 +1473,8 @@ spec:
                 type: boolean
               vxlanEnabled:
                 description: 'VXLANEnabled overrides whether Felix should create the
-                  VXLAN tunnel device for IPv4 VXLAN networking. Optional as Felix 
-                  determines this based on the existing IP pools. [Default: nil (unset)]'
+                  VXLAN tunnel device for IPv4 VXLAN networking. Optional as Felix determines
+                  this based on the existing IP pools. [Default: nil (unset)]'
                 type: boolean
               vxlanMTU:
                 description: 'VXLANMTU is the MTU to set on the IPv4 VXLAN tunnel
