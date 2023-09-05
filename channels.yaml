@@ -12,8 +12,10 @@ appDefaults:
         defaultVersion: '1.24.x'
       - appVersion: '>= 2.7.2-0 < 2.7.5-0'
         defaultVersion: '1.25.x'
-      - appVersion: '>= 2.7.5-0 < 2.7.100-0'
-        defaultVersion: '1.26.x'
+      - appVersion: '>= 2.7.5-0 < 2.8.0-0'
+        defaultVersion: '1.27.x'
+      - appVersion: '>= 2.8.0-0 < 2.8.100-0'
+        defaultVersion: '1.27.x'
 releases:
   - version: v1.18.20+k3s1
     minChannelServerVersion: v2.6.0-alpha1
@@ -442,10 +444,19 @@ releases:
     featureVersions: *featureVersions-v1
   - version: v1.26.7+k3s1
     minChannelServerVersion: v2.7.5-alpha1
-    maxChannelServerVersion: v2.7.99
-    serverArgs: 
+    maxChannelServerVersion: v2.8.99
+    serverArgs: &serverArgs-v7
       <<: *serverArgs-v4
       helm-job-image:
         type: string
+    agentArgs: *agentArgs-v3
+    featureVersions: *featureVersions-v1
+  - version: v1.27.4+k3s1
+    minChannelServerVersion: v2.7.5-alpha1
+    maxChannelServerVersion: v2.8.99
+    serverArgs:
+      <<: *serverArgs-v7
+      tls-san-security:
+        type: boolean
     agentArgs: *agentArgs-v3
     featureVersions: *featureVersions-v1
