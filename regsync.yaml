@@ -1013,3 +1013,9 @@ sync:
         - v1.26.9-rke2r1
         - v1.27.5-rke2r1
         - v1.27.6-rke2r1
+  - source: docker.io/vardhaman123/rancher-rke-tools
+    target: '{{ env "REGISTRY_ENDPOINT" }}/vardhaman123/rancher-rke-tools'
+    type: repository
+    tags:
+      allow:
+        - latest
