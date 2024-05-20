@@ -1,17 +1,20 @@
 package templates
 
 /*
-CalicoTemplateV3_27_3 is based on upstream calico v3.27.3
-Source: https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/calico.yaml
+CalicoTemplateV3_28_0 is based on upstream calico v3.28.0
+Source: https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/calico.yaml
 Upstream Changelog:
-- Added property `bpfExcludeCIDRsFromNAT` in CustomResourceDefinition
+- `bpfKubeProxyEndpointSlicesEnabled`, `numAllowedLocalASNumbers`, `bpfKubeProxyEndpointSlicesEnabled`,
+`metadataAddr` and `selector` properties description updated.
+- added property `debugHost`, `debugPort`, `debugSimulateCalcGraphHangAfter` and `endpointStatusPathPrefix`
+- whitespace fixes
 Rancher Changelog:
 - No new Rancher specific changes, same as CalicoTemplateV3_26_1
 */
 
-const CalicoTemplateV3_27_0Rancher2 = `
+const CalicoTemplateV3_28_0 = `
 {{- $cidrs := splitList "," .ClusterCIDR }}
-# Calico Template based on Calico v3.27.0
+# Calico Template based on Calico v3.28.0
 ---
 # Source: calico/templates/calico-config.yaml
 # This ConfigMap is used to configure a self-hosted Calico installation.
@@ -467,7 +470,7 @@ spec:
               numAllowedLocalASNumbers:
                 description: Maximum number of local AS numbers that are allowed in
                   the AS path for received routes. This removes BGP loop prevention
-                  and should only be used if absolutely necesssary.
+                  and should only be used if absolutely necessary.
                 format: int32
                 type: integer
               password:
@@ -1108,8 +1111,9 @@ spec:
                 - Disabled
                 type: string
               bpfKubeProxyEndpointSlicesEnabled:
-                description: BPFKubeProxyEndpointSlicesEnabled in BPF mode, controls
-                  whether Felix's embedded kube-proxy accepts EndpointSlices or not.
+                description: BPFKubeProxyEndpointSlicesEnabled is deprecated and has
+                  no effect. BPF kube-proxy always accepts endpoint slices. This option
+                  will be removed in the next release.
                 type: boolean
               bpfKubeProxyIptablesCleanupEnabled:
                 description: 'BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF
@@ -1228,9 +1232,21 @@ spec:
                 type: string
               debugDisableLogDropping:
                 type: boolean
+              debugHost:
+                description: DebugHost is the host IP or hostname to bind the debug
+                  port to.  Only used if DebugPort is set. [Default:localhost]
+                type: string
               debugMemoryProfilePath:
                 type: string
+              debugPort:
+                description: DebugPort if set, enables Felix's debug HTTP port, which
+                  allows memory and CPU profiles to be retrieved.  The debug port
+                  is not secure, it should not be exposed to the internet.
+                type: integer
               debugSimulateCalcGraphHangAfter:
+                pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
+                type: string
+              debugSimulateDataplaneApplyDelay:
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               debugSimulateDataplaneHangAfter:
@@ -1272,6 +1288,12 @@ spec:
                 type: string
               endpointReportingEnabled:
                 type: boolean
+              endpointStatusPathPrefix:
+                description: "EndpointStatusPathPrefix is the path to the directory
+                  where endpoint status will be written. Endpoint status file reporting
+                  is disabled if field is left empty. \n Chosen directory should match
+                  the directory used by the CNI for PodStartupDelay. [Default: \"\"]"
+                type: string
               externalNodesList:
                 description: ExternalNodesCIDRList is a list of CIDR's of external-non-calico-nodes
                   which may source tunnel traffic and have the tunneled traffic be
@@ -1543,7 +1565,7 @@ spec:
                 description: 'MetadataAddr is the IP address or domain name of the
                   server that can answer VM queries for cloud-init metadata. In OpenStack,
                   this corresponds to the machine running nova-api (or in Ubuntu,
-                  nova-api-metadata). A value of none (case insensitive) means that
+                  nova-api-metadata). A value of none (case-insensitive) means that
                   Felix should not set up any NAT rule for the metadata path. [Default:
                   127.0.0.1]'
                 type: string
@@ -2637,17 +2659,17 @@ spec:
                   any DNAT.
                 type: boolean
               selector:
-                description: "The selector is an expression used to pick pick out
-                  the endpoints that the policy should be applied to. \n Selector
-                  expressions follow this syntax: \n \tlabel == \"string_literal\"
-                  \ ->  comparison, e.g. my_label == \"foo bar\" \tlabel != \"string_literal\"
-                  \  ->  not equal; also matches if label is not present \tlabel in
-                  { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is
-                  one of \"a\", \"b\", \"c\" \tlabel not in { \"a\", \"b\", \"c\",
-                  ... }  ->  true if the value of label X is not one of \"a\", \"b\",
-                  \"c\" \thas(label_name)  -> True if that label is present \t! expr
-                  -> negation of expr \texpr && expr  -> Short-circuit and \texpr
-                  || expr  -> Short-circuit or \t( expr ) -> parens for grouping \tall()
+                description: "The selector is an expression used to pick out the endpoints
+                  that the policy should be applied to. \n Selector expressions follow
+                  this syntax: \n \tlabel == \"string_literal\"  ->  comparison, e.g.
+                  my_label == \"foo bar\" \tlabel != \"string_literal\"   ->  not
+                  equal; also matches if label is not present \tlabel in { \"a\",
+                  \"b\", \"c\", ... }  ->  true if the value of label X is one of
+                  \"a\", \"b\", \"c\" \tlabel not in { \"a\", \"b\", \"c\", ... }
+                  \ ->  true if the value of label X is not one of \"a\", \"b\", \"c\"
+                  \thas(label_name)  -> True if that label is present \t! expr ->
+                  negation of expr \texpr && expr  -> Short-circuit and \texpr ||
+                  expr  -> Short-circuit or \t( expr ) -> parens for grouping \tall()
                   or the empty selector -> matches all endpoints. \n Label names are
                   allowed to contain alphanumerics, -, _ and /. String literals are
                   more permissive but they do not support escape characters. \n Examples
@@ -4314,17 +4336,17 @@ spec:
                   type: string
                 type: array
               selector:
-                description: "The selector is an expression used to pick pick out
-                  the endpoints that the policy should be applied to. \n Selector
-                  expressions follow this syntax: \n \tlabel == \"string_literal\"
-                  \ ->  comparison, e.g. my_label == \"foo bar\" \tlabel != \"string_literal\"
-                  \  ->  not equal; also matches if label is not present \tlabel in
-                  { \"a\", \"b\", \"c\", ... }  ->  true if the value of label X is
-                  one of \"a\", \"b\", \"c\" \tlabel not in { \"a\", \"b\", \"c\",
-                  ... }  ->  true if the value of label X is not one of \"a\", \"b\",
-                  \"c\" \thas(label_name)  -> True if that label is present \t! expr
-                  -> negation of expr \texpr && expr  -> Short-circuit and \texpr
-                  || expr  -> Short-circuit or \t( expr ) -> parens for grouping \tall()
+                description: "The selector is an expression used to pick out the endpoints
+                  that the policy should be applied to. \n Selector expressions follow
+                  this syntax: \n \tlabel == \"string_literal\"  ->  comparison, e.g.
+                  my_label == \"foo bar\" \tlabel != \"string_literal\"   ->  not
+                  equal; also matches if label is not present \tlabel in { \"a\",
+                  \"b\", \"c\", ... }  ->  true if the value of label X is one of
+                  \"a\", \"b\", \"c\" \tlabel not in { \"a\", \"b\", \"c\", ... }
+                  \ ->  true if the value of label X is not one of \"a\", \"b\", \"c\"
+                  \thas(label_name)  -> True if that label is present \t! expr ->
+                  negation of expr \texpr && expr  -> Short-circuit and \texpr ||
+                  expr  -> Short-circuit or \t( expr ) -> parens for grouping \tall()
                   or the empty selector -> matches all endpoints. \n Label names are
                   allowed to contain alphanumerics, -, _ and /. String literals are
                   more permissive but they do not support escape characters. \n Examples
@@ -4663,7 +4685,7 @@ rules:
       - create
       - update
   # Calico must update some CRDs.
-  - apiGroups: [ "crd.projectcalico.org" ]
+  - apiGroups: ["crd.projectcalico.org"]
     resources:
       - caliconodestatuses
     verbs:
