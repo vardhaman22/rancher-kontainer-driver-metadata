@@ -10528,9 +10528,9 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			NginxProxy:                "rancher/rke-tools:v0.1.97",
 			CertDownloader:            "rancher/rke-tools:v0.1.97",
 			KubernetesServicesSidecar: "rancher/rke-tools:v0.1.97",
-			KubeDNS:                   "rancher/mirrored-k8s-dns-kube-dns:1.22.28",
-			DNSmasq:                   "rancher/mirrored-k8s-dns-dnsmasq-nanny:1.22.28",
-			KubeDNSSidecar:            "rancher/mirrored-k8s-dns-sidecar:1.22.28",
+			KubeDNS:                   "rancher/mirrored-k8s-dns-kube-dns:1.23.0",
+			DNSmasq:                   "rancher/mirrored-k8s-dns-dnsmasq-nanny:1.23.0",
+			KubeDNSSidecar:            "rancher/mirrored-k8s-dns-sidecar:1.23.0",
 			KubeDNSAutoscaler:         "rancher/mirrored-cluster-proportional-autoscaler:v1.8.9",
 			Flannel:                   "rancher/mirrored-flannel-flannel:v0.25.1",
 			FlannelCNI:                "rancher/flannel-cni:v1.4.1-rancher1",
@@ -10560,7 +10560,7 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			CoreDNS:                   "rancher/mirrored-coredns-coredns:1.11.1",
 			CoreDNSAutoscaler:         "rancher/mirrored-cluster-proportional-autoscaler:v1.8.9",
 			WindowsPodInfraContainer:  "rancher/mirrored-pause:3.7",
-			Nodelocal:                 "rancher/mirrored-k8s-dns-node-cache:1.22.28",
+			Nodelocal:                 "rancher/mirrored-k8s-dns-node-cache:1.23.0",
 		},
 		// k8s version from 2.1.x release with old rke-tools to allow upgrade from 2.1.x clusters
 		// without all clusters being restarted
