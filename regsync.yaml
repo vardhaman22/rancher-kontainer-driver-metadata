@@ -198,6 +198,7 @@ sync:
         - v1.28.9-rke2r1-build20240416
         - v1.29.3-rke2r1-build20240315
         - v1.29.4-rke2r1-build20240416
+        - v1.30.0-rke2r1-build20240506
   - source: docker.io/rancher/hardened-multus-cni
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/hardened-multus-cni'
     type: repository
@@ -399,6 +400,7 @@ sync:
         - v1.28.9-k3s1
         - v1.29.3-k3s1
         - v1.29.4-k3s1
+        - v1.30.0-k3s1
   - source: docker.io/rancher/klipper-helm
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/klipper-helm'
     type: repository
@@ -507,6 +509,7 @@ sync:
         - v3.27.0
         - v3.27.2
         - v3.27.3
+        - v3.28.0
   - source: docker.io/rancher/mirrored-calico-kube-controllers
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/mirrored-calico-kube-controllers'
     type: repository
@@ -523,6 +526,7 @@ sync:
         - v3.27.0
         - v3.27.2
         - v3.27.3
+        - v3.28.0
   - source: docker.io/rancher/mirrored-calico-node
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/mirrored-calico-node'
     type: repository
@@ -539,6 +543,7 @@ sync:
         - v3.27.0
         - v3.27.2
         - v3.27.3
+        - v3.28.0
   - source: docker.io/rancher/mirrored-calico-node-driver-registrar
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/mirrored-calico-node-driver-registrar'
     type: repository
@@ -576,6 +581,7 @@ sync:
         - v3.27.0
         - v3.27.2
         - v3.27.3
+        - v3.28.0
   - source: docker.io/rancher/mirrored-calico-typha
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/mirrored-calico-typha'
     type: repository
@@ -1168,6 +1174,8 @@ sync:
         - v1.29.3-rke2r1-windows-amd64
         - v1.29.4-rke2r1
         - v1.29.4-rke2r1-windows-amd64
+        - v1.30.0-rke2r1
+        - v1.30.0-rke2r1-windows-amd64
   - source: docker.io/rancher/rke2-upgrade
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/rke2-upgrade'
     type: repository
@@ -1218,6 +1226,7 @@ sync:
         - v1.28.9-rke2r1
         - v1.29.3-rke2r1
         - v1.29.4-rke2r1
+        - v1.30.0-rke2r1
   - source: docker.io/rancher/system-agent-installer-k3s
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/system-agent-installer-k3s'
     type: repository
@@ -1268,6 +1277,7 @@ sync:
         - v1.28.9-k3s1
         - v1.29.3-k3s1
         - v1.29.4-k3s1
+        - v1.30.0-k3s1
   - source: docker.io/rancher/system-agent-installer-rke2
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/system-agent-installer-rke2'
     type: repository
@@ -1318,3 +1328,46 @@ sync:
         - v1.28.9-rke2r1
         - v1.29.3-rke2r1
         - v1.29.4-rke2r1
+        - v1.30.0-rke2r1
+  - source: docker.io/registry.k8s.io/dns/k8s-dns-dnsmasq-nanny
+    target: '{{ env "REGISTRY_ENDPOINT" }}/registry.k8s.io/dns/k8s-dns-dnsmasq-nanny'
+    type: repository
+    tags:
+      allow:
+        - 1.23.0
+  - source: docker.io/registry.k8s.io/dns/k8s-dns-kube-dns
+    target: '{{ env "REGISTRY_ENDPOINT" }}/registry.k8s.io/dns/k8s-dns-kube-dns'
+    type: repository
+    tags:
+      allow:
+        - 1.23.0
+  - source: docker.io/registry.k8s.io/dns/k8s-dns-node-cache
+    target: '{{ env "REGISTRY_ENDPOINT" }}/registry.k8s.io/dns/k8s-dns-node-cache'
+    type: repository
+    tags:
+      allow:
+        - 1.23.0
+  - source: docker.io/registry.k8s.io/dns/k8s-dns-sidecar
+    target: '{{ env "REGISTRY_ENDPOINT" }}/registry.k8s.io/dns/k8s-dns-sidecar'
+    type: repository
+    tags:
+      allow:
+        - 1.23.0
+  - source: docker.io/vardhaman123/calico-cni
+    target: '{{ env "REGISTRY_ENDPOINT" }}/vardhaman123/calico-cni'
+    type: repository
+    tags:
+      allow:
+        - v3.28.0-rancher1
+  - source: docker.io/vardhaman123/hyperkube
+    target: '{{ env "REGISTRY_ENDPOINT" }}/vardhaman123/hyperkube'
+    type: repository
+    tags:
+      allow:
+        - v1.30.0-rancher1
+  - source: docker.io/vardhaman123/rancher-rke-tools
+    target: '{{ env "REGISTRY_ENDPOINT" }}/vardhaman123/rancher-rke-tools'
+    type: repository
+    tags:
+      allow:
+        - v0.1.97
