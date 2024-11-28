@@ -366,6 +366,7 @@ spec:
                           maximum: 128
                           minimum: 0
                           type: integer
+                      type: object
                     source:
                       type: string
                   required:
@@ -399,6 +400,7 @@ spec:
                           maximum: 32
                           minimum: 0
                           type: integer
+                      type: object
                     source:
                       type: string
                   required:
@@ -432,6 +434,7 @@ spec:
                           maximum: 128
                           minimum: 0
                           type: integer
+                      type: object
                     source:
                       type: string
                   required:
@@ -1243,6 +1246,17 @@ spec:
                   information about the BPF policy programs, which can be examined
                   with the calico-bpf command-line tool.
                 type: boolean
+              bpfRedirectToPeer:
+                description: 'BPFRedirectToPeer controls which whether it is allowed
+                  to forward straight to the peer side of the workload devices. It
+                  is allowed for any host L2 devices by default (L2Only), but it breaks
+                  TCP dump on the host side of workload device as it bypasses it on
+                  ingress. Value of Enabled also allows redirection from L3 host devices
+                  like IPIP tunnel or Wireguard directly to the peer side of the workload''s
+                  device. This makes redirection faster, however, it breaks tools
+                  like tcpdump on the peer side. Use Enabled with caution. [Default:
+                  L2Only]'
+                type: string
               chainInsertMode:
                 description: 'ChainInsertMode controls whether Felix hooks the kernel''s
                   top-level iptables chains by inserting a rule at the top of the
@@ -1419,7 +1433,7 @@ spec:
                   is not recommended since it doesn''t provide better performance
                   than iptables. [Default: false]'
                 type: boolean
-               goGCThreshold:
+              goGCThreshold:
                 description: "GoGCThreshold Sets the Go runtime's garbage collection
                   threshold.  I.e. the percentage that the heap is allowed to grow
                   before garbage collection is triggered.  In general, doubling the
@@ -1677,7 +1691,7 @@ spec:
               netlinkTimeout:
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
-               nftablesFilterAllowAction:
+              nftablesFilterAllowAction:
                 pattern: ^(?i)(Accept|Return)?$
                 type: string
               nftablesFilterDenyAction:
@@ -5610,15 +5624,16 @@ spec:
             properties:
               conditions:
                 items:
-                  description: |-
-                    Condition contains details for one aspect of the current
+                  description: "Condition contains details for one aspect of the current
                     state of this API Resource.\n---\nThis struct is intended for
                     direct use as an array at the field path .status.conditions.  For
                     example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
                     observations of a foo's current state.\n\t    // Known .status.conditions.type
                     are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
                     +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
-                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition"
+                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition "json:\"conditions,omitempty\"
+                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\""\n\n\n\t
+                    \   // other fields\n\t}"
                   properties:
                     lastTransitionTime:
                       description: |-
@@ -5642,11 +5657,11 @@ spec:
                       type: integer
                     reason:
                       description: |-
-                        "reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
                         Producers of specific condition types may define expected values and meanings for this field,
                         and whether the values are considered a guaranteed API.
                         The value should be a CamelCase string.
-                        This field may not be empty."
+                        This field may not be empty.
                       maxLength: 1024
                       minLength: 1
                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
@@ -6086,10 +6101,10 @@ spec:
           operator: Exists
       {{if eq .RBACConfig "rbac"}}
       serviceAccountName: calico-node
+      {{end}}
       securityContext:
         seccompProfile:
           type: RuntimeDefault
-      {{end}}
       # Minimize downtime during a rolling upgrade or deletion; tell Kubernetes to do a "force
       # deletion": https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods.
       terminationGracePeriodSeconds: 0
@@ -6185,7 +6200,7 @@ spec:
               # Bidirectional is required to ensure that the new mount we make at /run/calico/cgroup propagates to the host
               # so that it outlives the init container.
               mountPropagation: Bidirectional
-            # Mount /proc/ from host which usually is an init program at /nodeproc. It is needed by mountns binary,
+            # Mount /proc/ from host which usually is an init program at /nodeproc. It's needed by mountns binary,
             # executed by calico-node, to mount root cgroup2 fs at /run/calico/cgroup to attach CTLB programs correctly.
             - mountPath: /nodeproc
               name: nodeproc
@@ -6475,6 +6490,9 @@ spec:
       {{if eq .RBACConfig "rbac"}}
       serviceAccountName: calico-kube-controllers
       {{end}}
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       # Rancher specific change
       priorityClassName: {{ .CalicoKubeControllersPriorityClassName | default "system-cluster-critical" }}
       containers:
@@ -6504,6 +6522,7 @@ spec:
             periodSeconds: 10
           securityContext:
             runAsNonRoot: true
+
 ---
 {{if eq .RBACConfig "rbac"}}
 apiVersion: v1
