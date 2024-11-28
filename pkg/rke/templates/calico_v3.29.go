@@ -1034,11 +1034,11 @@ spec:
                 - Disable
                 type: string
               bpfCTLBLogFilter:
-                description: 'BPFCTLBLogFilter specifies, what is logged by connect
+                description: "BPFCTLBLogFilter specifies, what is logged by connect
                   time load balancer when BPFLogLevel is debug. Currently has to be
-                  specified as ''all'' when BPFLogFilters is set to see CTLB logs.
+                  specified as 'all' when BPFLogFilters is set to see CTLB logs.
                   [Default: unset - means logs are emitted when BPFLogLevel id debug
-                  and BPFLogFilters not set.]'
+                  and BPFLogFilters not set.]"
                 type: string
               bpfConnectTimeLoadBalancing:
                 description: 'BPFConnectTimeLoadBalancing when in BPF mode, controls
@@ -1084,10 +1084,10 @@ spec:
                   named cali...).
                 type: string
               bpfDisableUnprivileged:
-                description: 'BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled
+                description: "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled
                   sysctl to disable unprivileged use of BPF.  This ensures that unprivileged
-                  users cannot access Calico''s BPF maps and cannot insert their own
-                  BPF programs to interfere with Calico''s. [Default: true]'
+                  users cannot access Calico's BPF maps and cannot insert their own
+                  BPF programs to interfere with Calico's. [Default: true]"
                 type: boolean
               bpfEnabled:
                 description: 'BPFEnabled, if enabled Felix will use the BPF dataplane.
@@ -1126,12 +1126,12 @@ spec:
                 pattern: ^(?i)(Tunnel|DSR)?$
                 type: string
               bpfForceTrackPacketsFromIfaces:
-                description: 'BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic
-                  from these interfaces to skip Calico''s iptables NOTRACK rule, allowing
+                description: "BPFForceTrackPacketsFromIfaces in BPF mode, forces traffic
+                  from these interfaces to skip Calico's iptables NOTRACK rule, allowing
                   traffic from those interfaces to be tracked by Linux conntrack.  Should
                   only be used for interfaces that are not used for the Calico fabric.  For
                   example, a docker bridge device for non-Calico-networked containers.
-                  [Default: docker+]'
+                  [Default: docker+]"
                 items:
                   type: string
                 type: array
@@ -1154,16 +1154,16 @@ spec:
                   will be removed in the next release.
                 type: boolean
               bpfKubeProxyIptablesCleanupEnabled:
-                description: 'BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF
-                  mode, Felix will proactively clean up the upstream Kubernetes kube-proxy''s
+                description: "BPFKubeProxyIptablesCleanupEnabled, if enabled in BPF
+                  mode, Felix will proactively clean up the upstream Kubernetes kube-proxy's
                   iptables chains.  Should only be enabled if kube-proxy is not running.  [Default:
-                  true]'
+                  true]"
                 type: boolean
               bpfKubeProxyMinSyncPeriod:
-                description: 'BPFKubeProxyMinSyncPeriod, in BPF mode, controls the
-                  minimum time between updates to the dataplane for Felix''s embedded
+                description: "BPFKubeProxyMinSyncPeriod, in BPF mode, controls the
+                  minimum time between updates to the dataplane for Felix's embedded
                   kube-proxy.  Lower values give reduced set-up latency.  Higher values
-                  reduce Felix CPU usage by batching up more work.  [Default: 1s]'
+                  reduce Felix CPU usage by batching up more work.  [Default: 1s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               bpfL3IfacePattern:
@@ -1247,24 +1247,24 @@ spec:
                   with the calico-bpf command-line tool.
                 type: boolean
               bpfRedirectToPeer:
-                description: 'BPFRedirectToPeer controls which whether it is allowed
+                description: "BPFRedirectToPeer controls which whether it is allowed
                   to forward straight to the peer side of the workload devices. It
                   is allowed for any host L2 devices by default (L2Only), but it breaks
                   TCP dump on the host side of workload device as it bypasses it on
                   ingress. Value of Enabled also allows redirection from L3 host devices
-                  like IPIP tunnel or Wireguard directly to the peer side of the workload''s
+                  like IPIP tunnel or Wireguard directly to the peer side of the workload's
                   device. This makes redirection faster, however, it breaks tools
                   like tcpdump on the peer side. Use Enabled with caution. [Default:
-                  L2Only]'
+                  L2Only]"
                 type: string
               chainInsertMode:
-                description: 'ChainInsertMode controls whether Felix hooks the kernel''s
+                description: "ChainInsertMode controls whether Felix hooks the kernel's
                   top-level iptables chains by inserting a rule at the top of the
                   chain or by appending a rule at the bottom. insert is the safe default
-                  since it prevents Calico''s rules from being bypassed. If you switch
+                  since it prevents Calico's rules from being bypassed. If you switch
                   to append mode, be sure that the other rules in the chains signal
                   acceptance by falling through to the Calico rules, otherwise the
-                  Calico policy will be bypassed. [Default: insert]'
+                  Calico policy will be bypassed. [Default: insert]"
                 pattern: ^(?i)(insert|append)?$
                 type: string
               dataplaneDriver:
@@ -1378,18 +1378,18 @@ spec:
                   type: object
                 type: array
               failsafeOutboundHostPorts:
-                description: 'FailsafeOutboundHostPorts is a list of List of PortProto
+                description: "FailsafeOutboundHostPorts is a list of List of PortProto
                   struct objects including UDP/TCP/SCTP ports and CIDRs that Felix
                   will allow outgoing traffic from host endpoints to irrespective
                   of the security policy. This is useful to avoid accidentally cutting
                   off a host with incorrect configuration. For backwards compatibility,
-                  if the protocol is not specified, it defaults to "tcp". If a CIDR
+                  if the protocol is not specified, it defaults to 'tcp'. If a CIDR
                   is not specified, it will allow traffic from all addresses. To disable
-                  all outbound host ports, use the value "[]". The default value opens
-                  etcd''s standard ports to ensure that Felix does not get cut off
+                  all outbound host ports, use the value '[]'. The default value opens
+                  etcd's standard ports to ensure that Felix does not get cut off
                   from etcd as well as allowing DHCP, DNS, BGP and the Kubernetes
                   API. [Default: udp:53, udp:67, tcp:179, tcp:2379, tcp:2380, tcp:5473,
-                  tcp:6443, tcp:6666, tcp:6667 ]'
+                  tcp:6443, tcp:6666, tcp:6667 ]"
                 items:
                   description: ProtoPort is combination of protocol, port, and CIDR.
                     Protocol and port must be specified.
@@ -1428,10 +1428,10 @@ spec:
                 - Disabled
                 type: string
               genericXDPEnabled:
-                description: 'GenericXDPEnabled enables Generic XDP so network cards
-                  that don''t support XDP offload or driver modes can use XDP. This
-                  is not recommended since it doesn''t provide better performance
-                  than iptables. [Default: false]'
+                description: "GenericXDPEnabled enables Generic XDP so network cards
+                  that don't support XDP offload or driver modes can use XDP. This
+                  is not recommended since it doesn't provide better performance
+                  than iptables. [Default: false]"
                 type: boolean
               goGCThreshold:
                 description: "GoGCThreshold Sets the Go runtime's garbage collection
@@ -1486,23 +1486,23 @@ spec:
                   type: object
                 type: array
               interfaceExclude:
-                description: 'InterfaceExclude is a comma-separated list of interfaces
+                description: "InterfaceExclude is a comma-separated list of interfaces
                   that Felix should exclude when monitoring for host endpoints. The
-                  default value ensures that Felix ignores Kubernetes'' IPVS dummy
+                  default value ensures that Felix ignores Kubernetes' IPVS dummy
                   interface, which is used internally by kube-proxy. If you want to
                   exclude multiple interface names using a single value, the list
                   supports regular expressions. For regular expressions you must wrap
-                  the value with ''/''. For example having values ''/^kube/,veth1''
-                  will exclude all interfaces that begin with ''kube'' and also the
-                  interface ''veth1''. [Default: kube-ipvs0]'
+                  the value with '/'. For example having values '/^kube/,veth1'
+                  will exclude all interfaces that begin with 'kube' and also the
+                  interface 'veth1'. [Default: kube-ipvs0]"
                 type: string
               interfacePrefix:
-                description: 'InterfacePrefix is the interface name prefix that identifies
+                description: "InterfacePrefix is the interface name prefix that identifies
                   workload endpoints and so distinguishes them from host endpoint
                   interfaces. Note: in environments other than bare metal, the orchestrators
                   configure this appropriately. For example our Kubernetes and Docker
-                  integrations set the ''cali'' value, and our OpenStack integration
-                  sets the ''tap'' value. [Default: cali]'
+                  integrations set the 'cali' value, and our OpenStack integration
+                  sets the 'tap' value. [Default: cali]"
                 type: string
               interfaceRefreshInterval:
                 description: InterfaceRefreshInterval is the period at which Felix
@@ -1529,10 +1529,10 @@ spec:
                   Configuring MTU [Default: 1440]'
                 type: integer
               ipsetsRefreshInterval:
-                description: 'IpsetsRefreshInterval is the period at which Felix re-checks
+                description: "IpsetsRefreshInterval is the period at which Felix re-checks
                   all iptables state to ensure that no other process has accidentally
-                  broken Calico''s rules. Set to 0 to disable iptables refresh. [Default:
-                  90s]'
+                  broken Calico's rules. Set to 0 to disable iptables refresh. [Default:
+                  90s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               iptablesBackend:
@@ -1551,10 +1551,10 @@ spec:
                 pattern: ^(?i)(Drop|Reject)?$
                 type: string
               iptablesLockFilePath:
-                description: 'IptablesLockFilePath is the location of the iptables
+                description: "IptablesLockFilePath is the location of the iptables
                   lock file. You may need to change this if the lock file is not in
-                  its standard location (for example if you have mapped it into Felix''s
-                  container at a different path). [Default: /run/xtables.lock]'
+                  its standard location (for example if you have mapped it into Felix's
+                  container at a different path). [Default: /run/xtables.lock]"
                 type: string
               iptablesLockProbeInterval:
                 description: 'IptablesLockProbeInterval is the time that Felix will
@@ -1585,22 +1585,22 @@ spec:
               iptablesNATOutgoingInterfaceFilter:
                 type: string
               iptablesPostWriteCheckInterval:
-                description: 'IptablesPostWriteCheckInterval is the period after Felix
+                description: "IptablesPostWriteCheckInterval is the period after Felix
                   has done a write to the dataplane that it schedules an extra read
                   back in order to check the write was not clobbered by another process.
-                  This should only occur if another application on the system doesn''t
-                  respect the iptables lock. [Default: 1s]'
+                  This should only occur if another application on the system doesn't
+                  respect the iptables lock. [Default: 1s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               iptablesRefreshInterval:
-                description: 'IptablesRefreshInterval is the period at which Felix
+                description: "IptablesRefreshInterval is the period at which Felix
                   re-checks the IP sets in the dataplane to ensure that no other process
-                  has accidentally broken Calico''s rules. Set to 0 to disable IP
+                  has accidentally broken Calico's rules. Set to 0 to disable IP
                   sets refresh. Note: the default for this value is lower than the
                   other refresh intervals as a workaround for a Linux kernel bug that
                   was fixed in kernel version 4.11. If you are using v4.11 or greater
                   you may want to set this to, a higher value to reduce Felix CPU
-                  usage. [Default: 10s]'
+                  usage. [Default: 10s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               ipv6Support:
@@ -1663,10 +1663,10 @@ spec:
                   127.0.0.1]'
                 type: string
               metadataPort:
-                description: 'MetadataPort is the port of the metadata server. This,
-                  combined with global.MetadataAddr (if not ''None''), is used to
+                description: "MetadataPort is the port of the metadata server. This,
+                  combined with global.MetadataAddr (if not 'None'), is used to
                   set up a NAT rule, from 169.254.169.254:80 to MetadataAddr:MetadataPort.
-                  In most cases this should not need to be changed [Default: 8775].'
+                  In most cases this should not need to be changed [Default: 8775]."
                 type: integer
               mtuIfacePattern:
                 description: MTUIfacePattern is a regular expression that controls
@@ -1780,10 +1780,10 @@ spec:
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               routeRefreshInterval:
-                description: 'RouteRefreshInterval is the period at which Felix re-checks
+                description: "RouteRefreshInterval is the period at which Felix re-checks
                   the routes in the dataplane to ensure that no other process has
-                  accidentally broken Calico''s rules. Set to 0 to disable route refresh.
-                  [Default: 90s]'
+                  accidentally broken Calico's rules. Set to 0 to disable route refresh.
+                  [Default: 90s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
               routeSource:
@@ -1825,11 +1825,11 @@ spec:
                   type: object
                 type: array
               serviceLoopPrevention:
-                description: 'When service IP advertisement is enabled, prevent routing
+                description: "When service IP advertisement is enabled, prevent routing
                   loops to service IPs that are not in use, by dropping or rejecting
-                  packets that do not get DNAT''d by kube-proxy. Unless set to "Disabled",
+                  packets that do not get DNAT'd by kube-proxy. Unless set to 'Disabled',
                   in which case such routing loops continue to be allowed. [Default:
-                  Drop]'
+                  Drop]"
                 pattern: ^(?i)(Drop|Reject|Disabled)?$
                 type: string
               sidecarAccelerationEnabled:
@@ -1942,10 +1942,10 @@ spec:
                   incoming deny rules. [Default: true]'
                 type: boolean
               xdpRefreshInterval:
-                description: 'XDPRefreshInterval is the period at which Felix re-checks
+                description: "XDPRefreshInterval is the period at which Felix re-checks
                   all XDP state to ensure that no other process has accidentally broken
-                  Calico''s BPF maps or attached programs. Set to 0 to disable XDP
-                  refresh. [Default: 90s]'
+                  Calico's BPF maps or attached programs. Set to 0 to disable XDP
+                  refresh. [Default: 90s]"
                 pattern: ^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$
                 type: string
             type: object
@@ -2151,20 +2151,20 @@ spec:
                         requests.
                       properties:
                         methods:
-                          description: Methods is an optional field that restricts
+                          description: "Methods is an optional field that restricts
                             the rule to apply only to HTTP requests that use one of
                             the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple
-                            methods are OR'd together.
+                            methods are OR'd together."
                           items:
                             type: string
                           type: array
                         paths:
-                          description: 'Paths is an optional field that restricts
+                          description: "Paths is an optional field that restricts
                             the rule to apply to HTTP requests that use one of the
-                            listed HTTP Paths. Multiple paths are OR''d together.
+                            listed HTTP Paths. Multiple paths are OR'd together.
                             e.g: - exact: /foo - prefix: /bar NOTE: Each entry may
-                            ONLY specify either a "exact" or a "prefix" match. The
-                            validator will check for it.'
+                            ONLY specify either a 'exact' or a 'prefix' match. The
+                            validator will check for it."
                           items:
                             description: 'HTTPPath specifies an HTTP path to match.
                               It may be either of the form: exact: <path>: which matches
@@ -2524,20 +2524,20 @@ spec:
                         requests.
                       properties:
                         methods:
-                          description: Methods is an optional field that restricts
+                          description: "Methods is an optional field that restricts
                             the rule to apply only to HTTP requests that use one of
                             the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple
-                            methods are OR'd together.
+                            methods are OR'd together."
                           items:
                             type: string
                           type: array
                         paths:
-                          description: 'Paths is an optional field that restricts
+                          description: "Paths is an optional field that restricts
                             the rule to apply to HTTP requests that use one of the
-                            listed HTTP Paths. Multiple paths are OR''d together.
+                            listed HTTP Paths. Multiple paths are OR'd together.
                             e.g: - exact: /foo - prefix: /bar NOTE: Each entry may
-                            ONLY specify either a "exact" or a "prefix" match. The
-                            validator will check for it.'
+                            ONLY specify either a 'exact' or a 'prefix' match. The
+                            validator will check for it."
                           items:
                             description: 'HTTPPath specifies an HTTP path to match.
                               It may be either of the form: exact: <path>: which matches
@@ -3283,8 +3283,8 @@ spec:
                 description: The pool CIDR.
                 type: string
               disableBGPExport:
-                description: 'Disable exporting routes from this IP Pool''s CIDR over
-                  BGP. [Default: false]'
+                description: "Disable exporting routes from this IP Pool's CIDR over
+                  BGP. [Default: false]"
                 type: boolean
               disabled:
                 description: When disabled is true, Calico IPAM will not assign addresses
@@ -3835,20 +3835,20 @@ spec:
                         requests.
                       properties:
                         methods:
-                          description: Methods is an optional field that restricts
+                          description: "Methods is an optional field that restricts
                             the rule to apply only to HTTP requests that use one of
                             the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple
-                            methods are OR'd together.
+                            methods are OR'd together."
                           items:
                             type: string
                           type: array
                         paths:
-                          description: 'Paths is an optional field that restricts
+                          description: "Paths is an optional field that restricts
                             the rule to apply to HTTP requests that use one of the
-                            listed HTTP Paths. Multiple paths are OR''d together.
+                            listed HTTP Paths. Multiple paths are OR'd together.
                             e.g: - exact: /foo - prefix: /bar NOTE: Each entry may
-                            ONLY specify either a "exact" or a "prefix" match. The
-                            validator will check for it.'
+                            ONLY specify either a 'exact' or a 'prefix' match. The
+                            validator will check for it."
                           items:
                             description: 'HTTPPath specifies an HTTP path to match.
                               It may be either of the form: exact: <path>: which matches
@@ -4208,20 +4208,20 @@ spec:
                         requests.
                       properties:
                         methods:
-                          description: Methods is an optional field that restricts
+                          description: "Methods is an optional field that restricts
                             the rule to apply only to HTTP requests that use one of
                             the listed HTTP Methods (e.g. GET, PUT, etc.) Multiple
-                            methods are OR'd together.
+                            methods are OR'd together."
                           items:
                             type: string
                           type: array
                         paths:
-                          description: 'Paths is an optional field that restricts
+                          description: "Paths is an optional field that restricts
                             the rule to apply to HTTP requests that use one of the
-                            listed HTTP Paths. Multiple paths are OR''d together.
+                            listed HTTP Paths. Multiple paths are OR'd together.
                             e.g: - exact: /foo - prefix: /bar NOTE: Each entry may
-                            ONLY specify either a "exact" or a "prefix" match. The
-                            validator will check for it.'
+                            ONLY specify either a 'exact' or a 'prefix' match. The
+                            validator will check for it."
                           items:
                             description: 'HTTPPath specifies an HTTP path to match.
                               It may be either of the form: exact: <path>: which matches
@@ -4602,9 +4602,9 @@ spec:
               tier resource.
             properties:
               defaultAction:
-                description: 'DefaultAction specifies the action applied to workloads
-                  selected by a policy in the tier, but not rule matched the workload''s
-                  traffic. [Default: Deny]'
+                description: "DefaultAction specifies the action applied to workloads
+                  selected by a policy in the tier, but not rule matched the workload's
+                  traffic. [Default: Deny]"
                 enum:
                 - Pass
                 - Deny
@@ -5624,16 +5624,22 @@ spec:
             properties:
               conditions:
                 items:
-                  description: "Condition contains details for one aspect of the current
+                  description: 'Condition contains details for one aspect of the current
                     state of this API Resource.\n---\nThis struct is intended for
                     direct use as an array at the field path .status.conditions.  For
-                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
-                    observations of a foo's current state.\n\t    // Known .status.conditions.type
-                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
-                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
-                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition "json:\"conditions,omitempty\"
-                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\""\n\n\n\t
-                    \   // other fields\n\t}"
+                    example,
+                    type FooStatus struct {
+                      // Represents the observations of a foo"s current state.
+                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"
+                      // +patchMergeKey=type
+                      // +patchStrategy=merge
+                      // +listType=map
+                      // +listMapKey=type
+                      Conditions []metav1.Condition json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"
+                  
+                      // Other fields can be added here as needed.
+                    } 
+                  '
                   properties:
                     lastTransitionTime:
                       description: |-
