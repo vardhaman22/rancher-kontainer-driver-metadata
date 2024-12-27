@@ -11024,14 +11024,14 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			WindowsPodInfraContainer:  "rancher/mirrored-pause:3.7",
 			Nodelocal:                 "rancher/mirrored-k8s-dns-node-cache:1.22.28",
 		},
-			// Enabled in Rancher v2.9.5
-		"v1.29.11-rancher1-1": {
+		// Enabled in Rancher v2.9.6
+		"v1.29.12-rancher1-1": {
 			Etcd:                      "rancher/mirrored-coreos-etcd:v3.5.12",
-			Kubernetes:                "rancher/hyperkube:v1.29.11-rancher1",
-			Alpine:                    "rancher/rke-tools:v0.1.105",
-			NginxProxy:                "rancher/rke-tools:v0.1.105",
-			CertDownloader:            "rancher/rke-tools:v0.1.105",
-			KubernetesServicesSidecar: "rancher/rke-tools:v0.1.105",
+			Kubernetes:                "rancher/hyperkube:v1.29.12-rancher1",
+			Alpine:                    "rancher/rke-tools:v0.1.108",
+			NginxProxy:                "rancher/rke-tools:v0.1.108",
+			CertDownloader:            "rancher/rke-tools:v0.1.108",
+			KubernetesServicesSidecar: "rancher/rke-tools:v0.1.108",
 			KubeDNS:                   "rancher/mirrored-k8s-dns-kube-dns:1.22.28",
 			DNSmasq:                   "rancher/mirrored-k8s-dns-dnsmasq-nanny:1.22.28",
 			KubeDNSSidecar:            "rancher/mirrored-k8s-dns-sidecar:1.22.28",
@@ -11058,7 +11058,7 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			AciControllerContainer:    "noiro/aci-containers-controller:6.0.4.4.81c2369",
 			PodInfraContainer:         "rancher/mirrored-pause:3.7",
 			Ingress:                   "rancher/nginx-ingress-controller:nginx-1.11.3-rancher1",
-			IngressBackend:            "rancher/mirrored-nginx-ingress-controller-defaultbackend:1.5-rancher1",
+			IngressBackend:            "rancher/mirrored-nginx-ingress-controller-defaultbackend:1.5-rancher2",
 			IngressWebhook:            "rancher/mirrored-ingress-nginx-kube-webhook-certgen:v20231226-1a7112e06",
 			MetricsServer:             "rancher/mirrored-metrics-server:v0.7.0",
 			CoreDNS:                   "rancher/mirrored-coredns-coredns:1.11.1",
@@ -11306,14 +11306,14 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			WindowsPodInfraContainer:  "rancher/mirrored-pause:3.7",
 			Nodelocal:                 "rancher/mirrored-k8s-dns-node-cache:1.23.0",
 		},
-		// Enabled in Rancher v2.9.5
-		"v1.30.7-rancher1-1": {
+		// Enabled in Rancher v2.9.6
+		"v1.30.8-rancher1-1": {
 			Etcd:                      "rancher/mirrored-coreos-etcd:v3.5.12",
-			Kubernetes:                "rancher/hyperkube:v1.30.7-rancher1",
-			Alpine:                    "rancher/rke-tools:v0.1.105",
-			NginxProxy:                "rancher/rke-tools:v0.1.105",
-			CertDownloader:            "rancher/rke-tools:v0.1.105",
-			KubernetesServicesSidecar: "rancher/rke-tools:v0.1.105",
+			Kubernetes:                "rancher/hyperkube:v1.30.8-rancher1",
+			Alpine:                    "rancher/rke-tools:v0.1.108",
+			NginxProxy:                "rancher/rke-tools:v0.1.108",
+			CertDownloader:            "rancher/rke-tools:v0.1.108",
+			KubernetesServicesSidecar: "rancher/rke-tools:v0.1.108",
 			KubeDNS:                   "rancher/mirrored-k8s-dns-kube-dns:1.23.0",
 			DNSmasq:                   "rancher/mirrored-k8s-dns-dnsmasq-nanny:1.23.0",
 			KubeDNSSidecar:            "rancher/mirrored-k8s-dns-sidecar:1.23.0",
@@ -11338,7 +11338,7 @@ func loadK8sRKESystemImages() map[string]v3.RKESystemImages {
 			AciControllerContainer:    "noiro/aci-containers-controller:6.0.4.4.81c2369",
 			PodInfraContainer:         "rancher/mirrored-pause:3.7",
 			Ingress:                   "rancher/nginx-ingress-controller:nginx-1.11.3-rancher1",
-			IngressBackend:            "rancher/mirrored-nginx-ingress-controller-defaultbackend:1.5-rancher1",
+			IngressBackend:            "rancher/mirrored-nginx-ingress-controller-defaultbackend:1.5-rancher2",
 			IngressWebhook:            "rancher/mirrored-ingress-nginx-kube-webhook-certgen:v1.4.1",
 			MetricsServer:             "rancher/mirrored-metrics-server:v0.7.1",
 			CoreDNS:                   "rancher/mirrored-coredns-coredns:1.11.1",
