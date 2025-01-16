@@ -463,6 +463,7 @@ sync:
         - v1.29.10-rancher1
         - v1.29.11-rancher1
         - v1.29.12-rancher1
+        - v1.29.13-rancher1
         - v1.29.6-rancher1
         - v1.29.7-rancher1
         - v1.29.8-rancher1
@@ -474,9 +475,11 @@ sync:
         - v1.30.6-rancher1
         - v1.30.7-rancher1
         - v1.30.8-rancher1
+        - v1.30.9-rancher1
         - v1.31.2-rancher2
         - v1.31.3-rancher1
         - v1.31.4-rancher1
+        - v1.31.5-rancher1
   - source: docker.io/rancher/k3s-upgrade
     target: '{{ env "REGISTRY_ENDPOINT" }}/rancher/k3s-upgrade'
     type: repository
