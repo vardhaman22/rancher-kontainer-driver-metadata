@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: upload
-    if: github.event_name == 'push' && (github.ref_name == 'release-v2.10' || github.ref_name == 'dev-v2.10')
+    if: github.event_name == 'push' && (github.ref_name == 'release-v2.11' || github.ref_name == 'dev-v2.11')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,6 +101,6 @@ jobs:
             secret/data/github/repo/${{ github.repository }}/github-token/credentials token | PAT_TOKEN
       - name: Run dispatch
         run: |
-          gh workflow run "Go Generate" --repo rancher/rke --ref release/v1.7 -F source_author=${{ github.actor }}
+          gh workflow run "Go Generate" --repo rancher/rke --ref release/v1.8 -F source_author=${{ github.actor }}
         env:
           GH_TOKEN: ${{ env.PAT_TOKEN }}
