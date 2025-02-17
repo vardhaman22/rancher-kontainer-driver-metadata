@@ -22,6 +22,8 @@ appDefaults:
         defaultVersion: '1.30.x'
       - appVersion: '>= 2.10.0-0 < 2.11.100-0'
         defaultVersion: '1.31.x'
+      - appVersion: '>= 2.11.0-0 < 2.12.100-0'
+        defaultVersion: '1.32.x'
 releases:
   - version: v1.19.16+rke2r1
     minChannelServerVersion: v2.6.0-alpha1
@@ -3059,4 +3061,18 @@ releases:
       harvester-csi-driver:
         repo: rancher-rke2-charts
         version: 0.1.2200
+    featureVersions: *featureVersions-v1
+  - version: v1.32.1+rke2r1
+    minChannelServerVersion: v2.11.0-alpha1
+    maxChannelServerVersion: v2.11.99
+    serverArgs: *serverArgs-v1-28-11-rke2r1
+    agentArgs: *agentArgs-v1-28-11-rke2r1
+    charts: &charts-v1-32-1-rke2r1
+      <<: *charts-v1-31-5-rke2r1
+      rancher-vsphere-csi:
+        repo: rancher-rke2-charts
+        version: 3.3.1-rancher800
+      rancher-vsphere-cpi:
+        repo: rancher-rke2-charts
+        version: 1.10.000
     featureVersions: *featureVersions-v1
