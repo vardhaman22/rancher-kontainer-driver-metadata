@@ -36,7 +36,7 @@ const (
 )
 
 var (
-	maxAllowedServerVersion = semver.MustParse("2.10.0")
+	maxAllowedServerVersion = semver.MustParse("2.11.0")
 	minAllowedServerVersion = semver.MustParse("2.7.0")
 
 	data     = kdm.Data{}
