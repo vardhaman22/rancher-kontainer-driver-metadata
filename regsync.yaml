@@ -1391,7 +1391,6 @@ sync:
         - v0.1.105
         - v0.1.108
         - v0.1.109
-        - v0.1.110
         - v0.1.80
         - v0.1.87
         - v0.1.88
@@ -1838,3 +1837,9 @@ sync:
         - v1.31.4-rke2r1
         - v1.31.5-rke2r1
         - v1.32.1-rke2r1
+  - source: docker.io/vardhaman123/rke-tools
+    target: '{{ env "REGISTRY_ENDPOINT" }}/vardhaman123/rke-tools'
+    type: repository
+    tags:
+      allow:
+        - v0.1.110

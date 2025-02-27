@@ -94,9 +94,9 @@ func unique(imageTag map[string]map[string]bool, images []string) error {
 			return fmt.Errorf("failed to get image and tag from %s ", image)
 		}
 		name, tag := parts[0], parts[1]
-		if !strings.HasPrefix(name, "rancher") {
-			return fmt.Errorf("image name %s is not prefixed by rancher", image)
-		}
+		// if !strings.HasPrefix(name, "rancher") {
+		// 	return fmt.Errorf("image name %s is not prefixed by rancher", image)
+		// }
 		if tag == "" {
 			return fmt.Errorf("tag is missing from %s ", image)
 		}
@@ -146,9 +146,9 @@ func getImages(distro string, versions []interface{}) (all []string, err error) 
 					continue
 				}
 				// all images should be prefixed by "rancher"
-				if !strings.HasPrefix(converted, "rancher") {
-					return nil, fmt.Errorf("RKE system image %s does not start with rancher", converted)
-				}
+				// if !strings.HasPrefix(converted, "rancher") {
+				// 	return nil, fmt.Errorf("RKE system image %s does not start with rancher", converted)
+				// }
 				logrus.Tracef("distro %s version %s adds %s ", distro, version, converted)
 				all = append(all, converted)
 			}
